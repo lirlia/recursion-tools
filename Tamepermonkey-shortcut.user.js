@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         recursion-utility-tools
 // @namespace    https://recursionist.io/
-// @version      0.1
+// @version      0.2
 // @description  this tool support recursion IDE
 // @author       https://twitter.com/riddle_tec
 // @match        https://recursionist.io/*
@@ -30,9 +30,9 @@
 //}
 
 
-// Command(Win) + Shift + zキーでテストを実行
+// Command(Win) + Shift + sキーでテストを実行
 function runTestEvent(e){
-    if (e.metaKey && e.shiftKey && e.key === "z"){
+    if (e.metaKey && e.shiftKey && e.key === "s"){
         document.getElementById("test-button").click();
     }
 }
