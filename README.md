@@ -6,7 +6,7 @@
 
 動作|コマンド
 --|--
-テスト | Command + Shift + z
+テスト | Command + Shift + s
 実行 | Command + Shift + x
 
 ### 動作環境
