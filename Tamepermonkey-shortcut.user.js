@@ -32,14 +32,14 @@
 
 // Command(Win) + Shift + sキーでテストを実行
 function runTestEvent(e){
-    if (e.metaKey && e.shiftKey && e.key === "s"){
+    if ((e.metaKey && e.shiftKey) && (e.key === "s" || e.key === "Z")){
         document.getElementById("test-button").click();
     }
 }
 
 // Command(Win)  + Shift + zキーで提出を実行
 function runSubmitEvent(e){
-    if (e.metaKey && e.shiftKey && e.key === "x"){
+    if ((e.metaKey && e.shiftKey) && (e.key === "x" || e.key === "X")){
         document.getElementById("judge-button").click();
     }
 }
