@@ -37,7 +37,7 @@ function runTestEvent(e){
     }
 }
 
-// Command(Win)  + Shift + zキーで提出を実行
+// Command(Win)  + Shift + xキーで提出を実行
 function runSubmitEvent(e){
     if (e.metaKey && e.shiftKey && e.key === "x"){
         document.getElementById("judge-button").click();
