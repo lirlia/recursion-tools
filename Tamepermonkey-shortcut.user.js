@@ -10,17 +10,25 @@
 // @updateURL    https://raw.githubusercontent.com/lirlia/recursion-tools/main/Tamepermonkey-shortcut.user.js
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
+
+    // OSの判別
+    const userInfo = window.navigator.userAgent.toLowerCase();
+    let userOS = "";
+    if (userInfo.indexOf("windows") !== -1) {
+        userOS = "win"
+    } else if (userInfo.indexOf("mac os") !== -1) {
+        userOS = "mac"
+    }
 
     // サンプルテストケース
     //document.addEventListener('keydown', runSampleTestCaseEvent,false);
     // テスト
-    document.addEventListener('keydown', runTestEvent,false);
+    document.addEventListener('keydown', runTestEvent, false);
     // 提出
-    document.addEventListener('keydown', runSubmitEvent,false);
+    document.addEventListener('keydown', runSubmitEvent, false);
 })();
-
 
 // Command(Win) + Shift + 数字キーでテストを実行
 //function runSampleTestCaseEvent(e){
@@ -29,17 +37,28 @@
 //    }
 //}
 
+// テストを実行
+function runTestEvent(e) {
+    // テスト時のキー設定
+    const keyConf = {
+        win: [e.metaKey, e.shiftKey, "Z"], // windows ... Win + Shift + Z
+        mac: [e.metaKey, e.shiftKey, "s"], // mac ... Command + Shift + s
+    }
 
-// Command(Win) + Shift + sキーでテストを実行
-function runTestEvent(e){
-    if ((e.metaKey && e.shiftKey) && (e.key === "s" || e.key === "Z")){
+    if ((keyConf[userOS][0] && keyConf[userOS][1]) && e.key === keyConf[userOS][2]) {
         document.getElementById("test-button").click();
     }
 }
 
-// Command(Win)  + Shift + zキーで提出を実行
-function runSubmitEvent(e){
-    if ((e.metaKey && e.shiftKey) && (e.key === "x" || e.key === "X")){
+// 提出を実行
+function runSubmitEvent(e) {
+    // 提出時のキー設定
+    const keyConf = {
+        win: [e.metaKey, e.shiftKey, "X"], // windows ... Win + Shift + X
+        mac: [e.metaKey, e.shiftKey, "x"], // mac ... Command + Shift + x
+    }
+
+    if ((keyConf[userOS][0] && keyConf[userOS][1]) && e.key === keyConf[userOS][2]) {
         document.getElementById("judge-button").click();
     }
 }
