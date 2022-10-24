@@ -13,15 +13,6 @@
 (function () {
     'use strict';
 
-    // OSの判別
-    const userInfo = window.navigator.userAgent.toLowerCase();
-    let userOS = "";
-    if (userInfo.indexOf("windows") !== -1) {
-        userOS = "win"
-    } else if (userInfo.indexOf("mac os") !== -1) {
-        userOS = "mac"
-    }
-
     // サンプルテストケース
     //document.addEventListener('keydown', runSampleTestCaseEvent,false);
     // テスト
@@ -37,6 +28,23 @@
 //    }
 //}
 
+// getUserOS はブラウザの UserAgent をチェックして利用者の OS を取得します
+// 現在次の OS のみ対応しています windows(winとかえす) / mac os (mac と返す)
+// 非対応の場合は undefined を返します
+function getUserOS() {
+
+    // OSの判別
+    const userInfo = window.navigator.userAgent.toLowerCase();
+
+    if (userInfo.indexOf("windows") !== -1) {
+        return "win"
+    } else if (userInfo.indexOf("mac os") !== -1) {
+        return "mac"
+    }
+
+    return undefined
+}
+
 // テストを実行
 function runTestEvent(e) {
     // テスト時のキー設定
@@ -45,6 +53,7 @@ function runTestEvent(e) {
         mac: [e.metaKey, e.shiftKey, "s"], // mac ... Command + Shift + s
     }
 
+    const userOS = getUserOS();
     if ((keyConf[userOS][0] && keyConf[userOS][1]) && e.key === keyConf[userOS][2]) {
         document.getElementById("test-button").click();
     }
@@ -58,6 +67,7 @@ function runSubmitEvent(e) {
         mac: [e.metaKey, e.shiftKey, "x"], // mac ... Command + Shift + x
     }
 
+    const userOS = getUserOS();
     if ((keyConf[userOS][0] && keyConf[userOS][1]) && e.key === keyConf[userOS][2]) {
         document.getElementById("judge-button").click();
     }
